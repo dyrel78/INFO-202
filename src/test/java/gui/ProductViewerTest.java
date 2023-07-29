@@ -15,10 +15,9 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.fixture.DialogFixture;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentCaptor.forClass;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +40,7 @@ public class ProductViewerTest {
         
     }
     
-    @Before
+    @BeforeEach
     public void setUp() {
         
         p1 = new Product("TestID1", "Name1", "Desc1", "Cat1", new BigDecimal("1.11"), new BigDecimal("1.11"));
@@ -66,7 +65,7 @@ public class ProductViewerTest {
         
     }       //do product the id or wahtever
     
-    @After
+    @AfterEach
     public void tearDown() {
     }
     
