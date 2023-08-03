@@ -43,6 +43,7 @@ public class ProductViewerTest {
     @BeforeEach
     public void setUp() {
         
+    Collection <Product> products = new HashSet<>();
         p1 = new Product("TestID1", "Name1", "Desc1", "Cat1", new BigDecimal("1.11"), new BigDecimal("1.11"));
 	p2 = new Product("TestID2", "Name2", "Desc2", "Cat2", new BigDecimal("2.22"), new BigDecimal("2.22"));
         p3 = new Product("TestID3", "Name3", "Desc3", "Cat3", new BigDecimal("3.33"), new BigDecimal("3.33"));
@@ -67,6 +68,8 @@ public class ProductViewerTest {
     
     @AfterEach
     public void tearDown() {
+                fixture.cleanUp();
+
     }
     
     
@@ -91,6 +94,16 @@ public class ProductViewerTest {
 		fixture.list().requireItemCount(3);
 		SimpleListModel model = (SimpleListModel) fixture.list().target().getModel();
 		assertThat(model, containsInAnyOrder(p1, p2, p3));
+    }
+    
+    
+    @Test
+    public void testSave(){
+        
+        
+        
+        
+        //not needed?
     }
     
 }
