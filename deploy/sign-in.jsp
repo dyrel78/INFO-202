@@ -9,9 +9,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <link rel="stylesheet" href="css/style.css"/>
+
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+      <body>
+        <main>
+
+	<h1>Sign In Account</h1>
+        
+        <div> <p> Please sign in to continue </p> </div>
+
+	<fieldset>
+
+		<legend>Account Details</legend>
+
+		<form action="sign-in" method="POST">
+
+			<label>Username:</label><input type="text" name="username"/>
+			<label>Password:</label><input type="text" name="password"/>
+                        
+
+			<button type="submit">Sign in Account</button>
+                        
+		</form>
+
+	</fieldset>
+
+	<a class="nav" href="index.jsp">Back to Home</a>
+
+</main>
+        
     </body>
 </html>

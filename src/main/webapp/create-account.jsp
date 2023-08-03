@@ -10,10 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css"/>
-
         <title>Create Account</title>
     </head>
-  body>
+  <body>
         <main>
 
 	<h1>Create Account</h1>
