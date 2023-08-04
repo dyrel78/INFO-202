@@ -54,6 +54,7 @@ public class CreateAccountServlet extends HttpServlet {
         
         
         String userName = request.getParameter("username");
+        String password = request.getParameter("password");
         String firstName = request.getParameter("firstname");
         String surname = request.getParameter("surname");
         String address = request.getParameter("address");
@@ -65,9 +66,10 @@ public class CreateAccountServlet extends HttpServlet {
 
         // create the student object
         Customer customer = new Customer(idHashed,userName, firstName, surname, address, email);
-
+        
         // save the student
         dao.saveCustomer(customer);
+        customer.setPassword(password);
         response.sendRedirect("index.jsp");
         
         

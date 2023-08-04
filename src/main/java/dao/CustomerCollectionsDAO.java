@@ -18,7 +18,6 @@ import java.util.Map;
  */
 public class CustomerCollectionsDAO implements CustomerDAO {
 
-    private static final Multimap<String, Customer> categories = HashMultimap.create();
     private static final Map<String, Customer> customers = new HashMap<>();
 
     @Override

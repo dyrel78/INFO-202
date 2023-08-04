@@ -24,6 +24,8 @@
 		<form action="create-account" method="POST">
 
 			<label>Username:</label><input type="text" name="username"/>
+                        <label>Password:</label><input type="text" name="password"/>
+
 			<label>First Name:</label><input type="text" name="firstname"/>
                         <label>Surname</label><input type="text" name="surname"/>
 			<label>Address:</label><textarea name="address"></textarea>
