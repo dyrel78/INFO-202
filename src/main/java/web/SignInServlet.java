@@ -46,6 +46,7 @@ public class SignInServlet extends HttpServlet {
         
         if(dao.verificationCheck(checkUser.getUsername(), checkUser.getPassword())){
             response.sendRedirect("index.jsp");
+            
         } else{
             return; //Add in lab 5
         }

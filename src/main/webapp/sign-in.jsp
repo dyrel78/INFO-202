@@ -15,6 +15,7 @@
     </head>
       <body>
         <main>
+<%@include file="WEB-INF/jspf/navigation.jspf"%>
 
 	<h1>Sign In Account</h1>
         

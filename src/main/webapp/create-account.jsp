@@ -14,6 +14,7 @@
     </head>
   <body>
         <main>
+<%@include file="WEB-INF/jspf/navigation.jspf"%>
 
 	<h1>Create Account</h1>
 

@@ -9,13 +9,14 @@
         <body>
             <main>
 
-           <h1>Student Management</h1>
-
-           <nav>
+                     <nav>
                    <a href="create-Account.jsp">Create Account</a>
                    <a href="sign-in.jsp">Sign-in</a>
                    <a href="view-products.jsp">View Products</a>
            </nav>
+           <h1>Welcome!</h1>
+
+     
 
            </main>
         </body>
