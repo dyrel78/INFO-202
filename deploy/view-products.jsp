@@ -19,6 +19,8 @@
     </head>
     <body>
        <main>
+           <%@include file="WEB-INF/jspf/navigation.jspf"%>
+
             <h1>Products</h1>
 
 
@@ -61,6 +63,8 @@
                         <td><%= product.getProductId()%></td>
                         <td><%= product.getName()%></td>
                         <td><%= product.getCategory()%></td>
+                        <td> <form action="view-product" method="POST"><input type="hidden" name="id" value="<%= product.getProductID() %>"><button>Buy</button></form>
+</td>
                       
                     </tr>
                     <%
@@ -68,7 +72,7 @@
                     %>
                 </tbody>
 
-                <a href="view-students.jsp?major=All"><button>All</button></a>
+                <a href="view-products.jsp?category=All"><button>All</button></a>
 
                 <%
                     Collection<String> categories = dao.getCategories();
@@ -76,7 +80,7 @@
                     for (String category : categories) {
                 %>
 
-                <a href="view-students.jsp?category=<%= category%>"><button><%= category%></button></a>
+                <a href="view-products.jsp?category=<%= category%>"><button><%= category%></button></a>
 
                 <%
                     }

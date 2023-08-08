@@ -16,6 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import net.sf.oval.Validator;
 
 /**
  *
@@ -37,27 +39,34 @@ public class SignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          //Checking for SQL injections?
+         
+         //try{
+         
+                  HttpSession session = request.getSession();
+
              CustomerDAO dao = new CustomerCollectionsDAO();
    
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         
+        
+
         Customer checkUser = dao.searchByUserName(userName);
         
+         new Validator().assertValid(checkUser);
+
         if(dao.verificationCheck(checkUser.getUsername(), checkUser.getPassword())){
             response.sendRedirect("index.jsp");
             
         } else{
-            return; //Add in lab 5
+            session.setAttribute("validation", " Username and Pass word do not match");
         }
+//save the product
+//        response.sendRedirect("index.jsp");
         
-      
-        // save the student
-        
-        
-        
-        response.sendRedirect("index.jsp");
-        
+//         }catch(){
+//             
+//         }
     }
 
 }

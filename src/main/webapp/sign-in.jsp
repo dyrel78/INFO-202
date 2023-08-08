@@ -24,7 +24,12 @@
 	<fieldset>
 
 		<legend>Account Details</legend>
+<%
+	String validation = (String)session.getAttribute("validation");
+	validation = validation != null ? validation : "";
+%>
 
+<p><%= validation %></p>
 		<form action="sign-in" method="POST">
 
 			<label>Username:</label><input type="text" name="username"/>

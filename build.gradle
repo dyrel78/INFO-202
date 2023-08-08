@@ -41,6 +41,7 @@ dependencies {
 	testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
 	testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.4.0'
 	testImplementation group: 'org.assertj', name: 'assertj-swing', version: '3.17.1'
+
 }
 
 // copy web application to where Jetty is looking for it

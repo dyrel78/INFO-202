@@ -15,6 +15,7 @@
     </head>
       <body>
         <main>
+<%@include file="WEB-INF/jspf/navigation.jspf"%>
 
 	<h1>Sign In Account</h1>
         
@@ -23,7 +24,12 @@
 	<fieldset>
 
 		<legend>Account Details</legend>
+<%
+	String validation = (String)session.getAttribute("validation");
+	validation = validation != null ? validation : "";
+%>
 
+<p><%= validation %></p>
 		<form action="sign-in" method="POST">
 
 			<label>Username:</label><input type="text" name="username"/>

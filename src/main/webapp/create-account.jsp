@@ -21,19 +21,29 @@
 	<fieldset>
 
 		<legend>Account Details</legend>
+<%
+        String validation = (String)session.getAttribute("validation");
+	validation = validation != null ? validation : ""; 
+        // test
+        session.removeAttribute("validation");
+%>
+
+<p><%= validation %></p>
 
 		<form action="create-account" method="POST">
 
-			<label>Username:</label><input type="text" name="username"/>
-                        <label>Password:</label><input type="text" name="password"/>
+			<label>Username:</label><input type="text" name="username" required/>
+                        <label>Password:</label><input type="text" name="password" required/>
 
-			<label>First Name:</label><input type="text" name="firstname"/>
-                        <label>Surname</label><input type="text" name="surname"/>
+			<label>First Name:</label><input type="text" name="firstname" required/>
+                        <label>Surname</label><input type="text" name="surname" require />
 			<label>Address:</label><textarea name="address"></textarea>
-			<label>Phone Number:</label><input name="phoneNumber"/>
-			<label>Email Address:</label><input name="email"/>
+			<label>Phone Number:</label><input name="phoneNumber" required/>
+			<label>Email Address:</label><input name="email" required/>
 
 			<button type="submit">Create Account</button>
+                            <button type="reset">Clear</button>
+
 		</form>
 
 	</fieldset>

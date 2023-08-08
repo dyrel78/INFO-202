@@ -16,6 +16,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.exception.ConstraintsViolatedException;
 
 /**
  *
@@ -37,7 +41,8 @@ public class CreateAccountServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         HttpSession session = request.getSession();
+        try{
         CustomerDAO dao = new CustomerCollectionsDAO();
         
          Collection<Customer> custList = dao.getCustomers();
@@ -60,18 +65,36 @@ public class CreateAccountServlet extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         
-        
         Integer idHashed = Integer.valueOf(id);
-
-
-        // create the student object
+        // create the student obj
         Customer customer = new Customer(idHashed,userName, firstName, surname, address, email);
-        
-        // save the student
-        dao.saveCustomer(customer);
         customer.setPassword(password);
+
+        // save the student
+        new Validator().assertValid(customer);
+        
+        
+        dao.saveCustomer(customer);
+        session.removeAttribute("validation");
+
         response.sendRedirect("index.jsp");
         
+        }
+        
+        
+        catch (ConstraintsViolatedException ex) {
+	// get the violated constraints from the exception
+	ConstraintViolation[] violations = ex.getConstraintViolations();
+	// create a nice error message for the user
+	String msg = "Please fix the following input problems:";
+	msg += "<ul>";
+	for (ConstraintViolation cv : violations) {
+		msg += "<li>" + cv.getMessage() + "</li>";
+	}
+	msg += "</ul>";
+	request.getSession().setAttribute("validation", msg);
+	response.sendRedirect("create-account.jsp");
+}
         
         
     }

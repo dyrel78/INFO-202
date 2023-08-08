@@ -1,17 +1,43 @@
 package domain;
 
+import net.sf.oval.constraint.Length;
+import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
+
 /**
  * @author Mark George
  */
 public class Customer {
 
 	private Integer customerId;
-	private String username;
-	private String firstName;
-	private String surname;
-	private String password;
-	private String emailAddress;
-	private String shippingAddress;
+        
+        @NotNull(message = "Usernmae must be provided.")
+         @NotBlank(message = "Username must be provided.")
+         @Length(min = 5, message = "Username must contain at least five characters.")
+         private String username;
+
+         @NotNull(message = "First name must be provided.")
+         @NotBlank(message = "First name must be provided.")
+         @Length(min = 1, message = "First name must contain at least 1 character.")
+         private String firstName;
+
+         @NotNull(message = "Surname must be provided.")
+         @NotBlank(message = "Surname must be provided.")
+         @Length(min = 1, message = "Surname must contain at least 1 character.")
+         private String surname;
+
+         @NotNull(message = "Password must be provided.")
+         @NotBlank(message = "Password must be provided.")
+         @Length(min = 7, message = "Password must contain at least 7 characters.")
+         private String password;
+
+         @NotNull(message = "Email address must be provided.")
+         @NotBlank(message = "Email address must be provided.")
+         private String emailAddress;
+
+         @NotNull(message = "Shipping address must be provided.")
+         @NotBlank(message = "Shipping address must be provided.")
+         private String shippingAddress;
 
 	public Customer() {
 	}
