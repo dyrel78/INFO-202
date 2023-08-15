@@ -29,6 +29,7 @@
 %>
 
 <p><%= validation %></p>
+
 		<form action="create-account" method="POST">
 
 			<label>Username:</label><input type="text" name="username" required/>
