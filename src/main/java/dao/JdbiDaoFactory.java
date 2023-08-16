@@ -6,10 +6,10 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 public class JdbiDaoFactory {
 
-   private static final String DB_USERNAME = "sa";
-   private static final String DB_PASSWORD = "sa";
+   private static final String DB_USERNAME = "customers";
+   private static final String DB_PASSWORD = "password";
 
-   private static String jdbcUri = "jdbc:h2:tcp://localhost/students";
+   private static String jdbcUri = "jdbc:h2:tcp://localhost/customers";
 
    private static HikariDataSource HIKARI_DATA_SOURCE;
    private static Jdbi JDBI;

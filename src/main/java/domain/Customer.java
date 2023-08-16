@@ -42,13 +42,21 @@ public class Customer {
 	public Customer() {
 	}
 
-	public Customer(Integer customerId, String username, String firstName, String surname, String shippingAddress, String emailAddress) {
-		this.customerId = customerId;
+//	public Customer(Integer customerId, String username, String firstName, String surname, String shippingAddress, String emailAddress) {
+//		this.customerId = customerId;
+//		this.username = username;
+//		this.firstName = firstName;
+//		this.surname = surname;
+//		this.shippingAddress = shippingAddress;
+//		this.emailAddress = emailAddress;
+//	}
+        public Customer(String password, String username, String firstName, String surname, String shippingAddress, String emailAddress) {
 		this.username = username;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.shippingAddress = shippingAddress;
 		this.emailAddress = emailAddress;
+                this.password = password;
 	}
 
 	public Integer getCustomerId() {

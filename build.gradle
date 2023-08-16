@@ -20,12 +20,13 @@ test {
 
 dependencies {
 	providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+implementation group: "com.h2database", name: "h2", version: "2.2.220";
 
         implementation group: "com.zaxxer", name: "HikariCP", version: "5.0.1";
 
-def jdbiVer = "3.40.0";
-implementation group: "org.jdbi", name: "jdbi3-core", version: jdbiVer;
-implementation group: "org.jdbi", name: "jdbi3-sqlobject", version: jdbiVer;
+        def jdbiVer = "3.40.0";
+        implementation group: "org.jdbi", name: "jdbi3-core", version: jdbiVer;
+        implementation group: "org.jdbi", name: "jdbi3-sqlobject", version: jdbiVer;
 	// Jetty
 	def jettyVer = "10.0.15" // jetty 10 supports servlet 4
 	implementation group: 'org.eclipse.jetty', name: 'jetty-webapp', version: jettyVer

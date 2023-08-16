@@ -6,6 +6,7 @@ package web;
 
 import dao.CustomerCollectionsDAO;
 import dao.CustomerDAO;
+import dao.JdbiDaoFactory;
 import domain.Customer;
 import java.io.IOException;
 import static java.lang.System.in;
@@ -37,14 +38,12 @@ public class CreateAccountServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    
-    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          HttpSession session = request.getSession();
         try{
-        CustomerDAO dao = new CustomerCollectionsDAO();
-        
+            // 
+        CustomerDAO dao = JdbiDaoFactory.getCustomerDAO();
          Collection<Customer> custList = dao.getCustomers();
          
          Random rng = new Random();
@@ -56,8 +55,6 @@ public class CreateAccountServlet extends HttpServlet {
              }else return;
              
          }
-        
-        
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstname");
@@ -65,10 +62,12 @@ public class CreateAccountServlet extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         
-        Integer idHashed = Integer.valueOf(id);
+      //  Integer idHashed = Integer.valueOf(id);
         // create the student obj
-        Customer customer = new Customer(idHashed,userName, firstName, surname, address, email);
-        customer.setPassword(password);
+//        Customer customer = new Customer(idHashed,userName, firstName, surname, address, email);
+        Customer customer = new Customer(password,userName, firstName, surname, address, email);
+        
+            customer.setCustomerId(id);
 
         // save the student
         new Validator().assertValid(customer);
