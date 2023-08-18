@@ -20,7 +20,7 @@ public interface CustomerJdbiDAO extends CustomerDAO{
 
     
      @Override
-    @SqlUpdate("merge into Customer(CustomerID, Username, FirstName, Surname, EmailAddress,ShippingAddress,Password) values (:customerId, :username, :firstName, :surname, :emailAddress, :shippingAddress, :password)")
+    @SqlUpdate("insert into Customer(Username, FirstName, Surname, EmailAddress,ShippingAddress,Password) values (:username, :firstName, :surname, :emailAddress, :shippingAddress, :password)")
     public void saveCustomer(@BindBean Customer customer);
 //    @SqlUpdate("merge into Student(ID, Name, Major, Phone_Number, Address) values (:id, :name, :major, :phoneNumber, :address)")
 // CustomerID integer AUTO_INCREMENT (1000) unique,

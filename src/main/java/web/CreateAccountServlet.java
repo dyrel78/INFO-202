@@ -44,34 +44,17 @@ public class CreateAccountServlet extends HttpServlet {
         try{
             // 
         CustomerDAO dao = JdbiDaoFactory.getCustomerDAO();
-         Collection<Customer> custList = dao.getCustomers();
-         
-         Random rng = new Random();
-         int id = rng.hashCode();
-         for(Customer cust : custList){
-             if(cust.getCustomerId() == id){
-                 System.out.println("Already have an account");
-                 return ;
-             }else return;
-             
-         }
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstname");
         String surname = request.getParameter("surname");
         String address = request.getParameter("address");
         String email = request.getParameter("email");
-        
-      //  Integer idHashed = Integer.valueOf(id);
-        // create the student obj
-//        Customer customer = new Customer(idHashed,userName, firstName, surname, address, email);
+       
         Customer customer = new Customer(password,userName, firstName, surname, address, email);
         
-            customer.setCustomerId(id);
-
         // save the student
         new Validator().assertValid(customer);
-        
         
         dao.saveCustomer(customer);
         session.removeAttribute("validation");
