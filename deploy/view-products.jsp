@@ -63,7 +63,7 @@
                         <td><%= product.getProductId()%></td>
                         <td><%= product.getName()%></td>
                         <td><%= product.getCategory()%></td>
-                        <td> <form action="view-product" method="POST"><input type="hidden" name="id" value="<%= product.getProductID() %>"><button>Buy</button></form>
+                        <td> <form action="view-product" method="POST"><input type="hidden" name="id" value="<%= product.getProductId() %>"><button>Buy</button></form>
 </td>
                       
                     </tr>
