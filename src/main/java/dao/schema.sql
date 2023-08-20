@@ -11,14 +11,14 @@ CREATE TABLE IF NOT EXISTS Customer (
 );
 
 
--- 
--- 
--- CREATE TABLE IF NOT EXISTS Product (
---     productID varchar unique,
---     name varchar(50) not null,
---     description varchar(100) not null,
---     category varchar(50) not null,
---     listPrice numeric(6,2) not null,
---     quantityInStock integer not null,
---     constraint Product_PK primary key (productID)
--- );
+ 
+ 
+ CREATE TABLE IF NOT EXISTS Product (
+     ProductId varchar unique,
+     Name varchar(50) not null,
+     Description varchar(100) not null,
+     Category varchar(50) not null,
+     ListPrice numeric(6,2) not null,
+     QuantityInStock integer not null,
+     constraint Product_PK primary key (ProductId)
+ );

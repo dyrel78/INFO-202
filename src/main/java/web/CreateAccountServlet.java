@@ -74,6 +74,7 @@ public class CreateAccountServlet extends HttpServlet {
 		msg += "<li>" + cv.getMessage() + "</li>";
 	}
 	msg += "</ul>";
+        
 	request.getSession().setAttribute("validation", msg);
 	response.sendRedirect("create-account.jsp");
 }
