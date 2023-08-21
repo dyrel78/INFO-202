@@ -38,8 +38,8 @@
 	validation = validation != null ? validation : "";
 %>
 
-<p><%= validation %></p>
-		<form action="sign-in" method="POST">
+<div class="error-messages"><%= validation%></div>	
+<form action="sign-in" method="POST">
 
 			<label>Username:</label><input type="text" name="username"/>
 			<label>Password:</label><input type="text" name="password"/>

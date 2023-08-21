@@ -62,7 +62,7 @@ public class SignInServlet extends HttpServlet {
             response.sendRedirect("index.jsp");
         } else {
 
-            request.getSession().setAttribute("error-messages", "<p>Incorrect username/password</p>");
+            request.getSession().setAttribute("validation", "<p>Incorrect username/password</p>");
             response.sendRedirect("sign-in.jsp");
         }
 //save the product

@@ -27,7 +27,7 @@
                 <%@include file="WEB-INF/jspf/navigation.jspf"%>
 
             </nav>
-            <h1>Welcome!</h1>
+            <h1>Welcome to Gadgets R Us!</h1>
 
 
 

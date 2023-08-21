@@ -1,5 +1,6 @@
 package gui;
 
+import dao.DaoFactory;
 import dao.ProductDAO;
 
 /**
@@ -10,7 +11,8 @@ public class MainMenu extends javax.swing.JFrame {
 	private final ProductDAO dao;
 
 	public MainMenu(ProductDAO dao) {
-		this.dao = dao;
+            
+		this.dao = DaoFactory.getProductDAO();;
 		initComponents();
 	}
 

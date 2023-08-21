@@ -38,7 +38,7 @@
        session.removeAttribute("validation");
 %>
 
-<p><%= validation %></p>
+<div class="error-messages"><%= validation%></div>	
 
 		<form action="create-account" method="POST">
 
