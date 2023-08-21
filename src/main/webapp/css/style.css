@@ -7,7 +7,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : dyrellumiwes
 */
 
+/* Font */
+* {
+    /* No white space*/
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Zilla Slab', serif;
+    
 
+}
 
 /* centre the main content area */
 main {
@@ -31,6 +38,12 @@ nav a {
 
 nav {
 	text-align: center;
+        margin-top: 15px;
+}
+
+.createText{
+        	text-align: center;
+
 }
 
 /*nav {

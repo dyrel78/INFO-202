@@ -10,6 +10,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <link rel="stylesheet" href="css/style.css"/>
+          <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> -->
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Zilla+Slab&display=swap" rel="stylesheet">
+
+        <!-- Lighter font
+           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>      
 
         <title>JSP Page</title>
     </head>
@@ -42,7 +51,8 @@
 
 	</fieldset>
 
-	<a class="nav" href="index.jsp">Back to Home</a>
+                <p class = "createText"> If you do not have an account please <a class="nav" href="create-account.jsp"> create one here.</a></p>
+	
 
 </main>
         
