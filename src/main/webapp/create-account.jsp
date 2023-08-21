@@ -25,7 +25,7 @@
         String validation = (String)session.getAttribute("validation");
 	validation = validation != null ? validation : ""; 
         // test
-        session.removeAttribute("validation");
+       session.removeAttribute("validation");
 %>
 
 <p><%= validation %></p>

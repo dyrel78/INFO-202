@@ -6,6 +6,7 @@ package web;
 
 import dao.CustomerCollectionsDAO;
 import dao.CustomerDAO;
+import dao.DaoFactory;
 import dao.JdbiDaoFactory;
 import domain.Customer;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.exception.ConstraintsViolatedException;
+import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -40,47 +42,43 @@ public class CreateAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
-        try{
+        HttpSession session = request.getSession();
+        try {
             // 
-        CustomerDAO dao = JdbiDaoFactory.getCustomerDAO();
-        String userName = request.getParameter("username");
-        String password = request.getParameter("password");
-        String firstName = request.getParameter("firstname");
-        String surname = request.getParameter("surname");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-       
-        Customer customer = new Customer(password,userName, firstName, surname, address, email);
-        
-        // save the student
-        new Validator().assertValid(customer);
-        
-        dao.saveCustomer(customer);
-        session.removeAttribute("validation");
+            CustomerDAO dao = DaoFactory.getCustomerDAO();
+            //  CustomerDAO dao = new CustomerCollectionsDAO();
 
-        response.sendRedirect("index.jsp");
-        
+            String userName = request.getParameter("username");
+            String password = request.getParameter("password");
+            String firstName = request.getParameter("firstname");
+            String surname = request.getParameter("surname");
+            String address = request.getParameter("address");
+            String email = request.getParameter("email");
+
+            Customer customer = new Customer(password, userName, firstName, surname, address, email);
+
+            // save the student
+            new Validator().assertValid(customer);
+            session.removeAttribute("validation");
+            dao.saveCustomer(customer);
+            session.removeAttribute("validation");
+            response.sendRedirect("index.jsp");
+
+        } catch (ConstraintsViolatedException ex) {
+            // get the violated constraints from the exception
+            ConstraintViolation[] violations = ex.getConstraintViolations();
+            // create a nice error message for the user
+            String msg = "Please fix the following input problems:";
+            msg += "<ul>";
+            for (ConstraintViolation cv : violations) {
+                msg += "<li>" + cv.getMessage() + "</li>";
+            }
+            msg += "</ul>";
+
+            request.getSession().setAttribute("validation", msg);
+            response.sendRedirect("create-account.jsp");
         }
-        
-        
-        catch (ConstraintsViolatedException ex) {
-	// get the violated constraints from the exception
-	ConstraintViolation[] violations = ex.getConstraintViolations();
-	// create a nice error message for the user
-	String msg = "Please fix the following input problems:";
-	msg += "<ul>";
-	for (ConstraintViolation cv : violations) {
-		msg += "<li>" + cv.getMessage() + "</li>";
-	}
-	msg += "</ul>";
-        
-	request.getSession().setAttribute("validation", msg);
-	response.sendRedirect("create-account.jsp");
-}
-        
-        
+
     }
-        
-        
- }
+
+}

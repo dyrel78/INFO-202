@@ -6,6 +6,7 @@ package web;
 
 import dao.CustomerCollectionsDAO;
 import dao.CustomerDAO;
+import dao.DaoFactory;
 import domain.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,36 +38,44 @@ public class SignInServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
             throws ServletException, IOException {
          //Checking for SQL injections?
-         
-         //try{
-         
-                  HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
 
-             CustomerDAO dao = new CustomerCollectionsDAO();
-   
+//         try{
+ 
+           //  CustomerDAO dao = new CustomerCollectionsDAO();
+        CustomerDAO dao = DaoFactory.getCustomerDAO();
+
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-        
-        
-
+        boolean result = dao.verificationCheck(userName, password);
         Customer checkUser = dao.searchByUserName(userName);
         
-         new Validator().assertValid(checkUser);
+//         new Validator().assertValid(checkUser);
 
-        if(dao.verificationCheck(checkUser.getUsername(), checkUser.getPassword())){
+         if (result) {
+            Customer customer = dao.searchByUserName(userName);
+            customer.setPassword(null);
+            request.getSession().setAttribute("customer", customer);
             response.sendRedirect("index.jsp");
-            
-        } else{
-            session.setAttribute("validation", " Username and Pass word do not match");
+        } else {
+
+            request.getSession().setAttribute("error-messages", "<p>Incorrect username/password</p>");
+            response.sendRedirect("sign-in.jsp");
         }
 //save the product
 //        response.sendRedirect("index.jsp");
         
-//         }catch(){
-//             
-//         }
+//     }catch(NumberFormatException e) {
+//           
+//          session.setAttribute("validation", "You have entered an invalid ID ");
+//          response.sendRedirect("create-account.jsp");
+//            
+//          
+//          
+//        }
     }
 
 }

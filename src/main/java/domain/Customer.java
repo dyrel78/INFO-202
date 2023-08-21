@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Objects;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotBlank;
 import net.sf.oval.constraint.NotNull;
@@ -58,6 +59,28 @@ public class Customer {
 		this.emailAddress = emailAddress;
                 this.password = password;
 	}
+        
+           @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Customer other = (Customer) obj;
+        return Objects.equals(this.username, other.username);
+    }
 
 	public Integer getCustomerId() {
 		return customerId;
@@ -119,5 +142,7 @@ public class Customer {
 	public String toString() {
 		return "Customer{" + "customerId=" + customerId + ", username=" + username + ", firstName=" + firstName + ", surname=" + surname + ", password=" + password + ", emailAddress=" + emailAddress + ", shippingAddress=" + shippingAddress + '}';
 	}
+        
+        
 
 }

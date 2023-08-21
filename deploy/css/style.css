@@ -33,6 +33,63 @@ nav {
 	text-align: center;
 }
 
+/*nav {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 1rem;
+    
+}
+
+nav ul {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav ul li {
+    text-decoration: none;
+    list-style: none;
+   
+}
+
+nav ul li a {
+    color: var(--primary);
+}
+
+nav p {
+    
+}
+nav {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 1rem;
+    
+}
+
+nav ul {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav ul li {
+    text-decoration: none;
+    list-style: none;
+   
+}
+
+nav ul li a {
+    color: var(--primary);
+}
+
+nav p {
+    
+}*/
+
+
+
 /* tables */
 table {
 	margin: 20px;

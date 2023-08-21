@@ -1,0 +1,55 @@
+@startuml
+
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 11
+      Style plain
+    }
+  }
+  Database {
+    BorderColor #A80036
+  }
+}
+
+
+' === Actors / Participants
+
+actor "User" as user
+participant "view-students" as viewPage << JSP Page >>
+participant "ViewStudentServlet" as viewServlet <<Servlet>>
+participant "view-student-details" as editPage << JSP Page >>
+participant "Session" as session
+participant "StudentJdbiDAO" as dao << DAO >>
+database "Database" as db
+
+
+' === Interactions ===
+
+user -> viewPage++ : clicks "Update" button
+
+viewPage -> viewServlet++ : POST student ID
+
+viewServlet -> dao++ : getByID(id)
+dao -> db++ : select * from student\nwhere id = :id
+return result
+return student
+
+viewServlet -> session++ : setAttribute("student", student)
+return
+
+viewServlet -> editPage++ : redirect
+editPage -> session++ : getAttribute("student")
+return student
+
+editPage -> editPage : add student\ndetails to form
+
+editPage -->user : student details ready to update
+
+@enduml

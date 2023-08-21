@@ -10,7 +10,7 @@
             <main>
 
                      <nav>
-                   <a href="create-Account.jsp">Create Account</a>
+                   <a href="create-account.jsp">Create Account</a>
                    <a href="sign-in.jsp">Sign-in</a>
                    <a href="view-products.jsp">View Products</a>
            </nav>

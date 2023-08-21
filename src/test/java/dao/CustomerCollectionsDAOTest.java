@@ -30,7 +30,8 @@ public class CustomerCollectionsDAOTest {
     @BeforeEach
     public void setUp() {
         
-        dao = new CustomerCollectionsDAO();
+      //  dao = new CustomerCollectionsDAO();
+         dao = JdbiDaoFactory.getCustomerDAO();
         c1 = new Customer();
         c2 = new Customer();
         c3 = new Customer();

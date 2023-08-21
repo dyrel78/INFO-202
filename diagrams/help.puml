@@ -1,0 +1,47 @@
+@startuml
+
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 10
+  ParticipantPadding 10
+  Padding 10
+  SequenceStereotype {
+    Font {
+      Size 12
+      Style bold
+    }
+  }
+  Database {
+    BorderColor #A80036
+  }
+}
+
+' === Actors / Participants
+
+actor "User" as user
+participant "Home Page" as homePage << JSP Page >>
+participant "CreateAccountServlet" as createServlet <<Servlet>>
+participant "Create Account Page" as createPage << JSP Page >>
+participant "Session" as session
+participant "CustomerDAO" as dao << DAO >>
+database "Database" as db
+
+' === Interactions ===
+
+user -> homePage : clicks "Create Account" button
+homePage -> createServlet : Redirect to create account
+createServlet -> createPage : Render create account page
+createPage -> user : Display create account form
+user -> createPage : Enters account details
+createPage -> createServlet : Submits account details
+createServlet -> dao : Insert new customer data
+dao -> db : Execute SQL INSERT
+db --> dao : Insertion result
+createServlet -> session : Store customer in session
+session -> createPage : Redirect to success page
+createPage -> session : Retrieve customer from session
+createPage --> user : Account creation successful
+
+@enduml

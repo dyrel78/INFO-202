@@ -35,13 +35,13 @@ public interface CustomerJdbiDAO extends CustomerDAO{
     
     
     @Override
-    @SqlQuery("select exists (select * from Student where ID = :id)")
-    public Boolean verificationCheck(@Bind("id")String username, String password);
+    @SqlQuery("select exists (select * from Customer where Username = :username AND Password = :password)")
+    public Boolean verificationCheck(@Bind("username")String username, @Bind("password") String password);
 
    @Override
     @SqlQuery("select * from Customer where Username = :username")
     @RegisterBeanMapper(Customer.class)
-    public Customer searchByUserName(String username);
+    public Customer searchByUserName(@Bind("username")String username);
 
     @Override
     @SqlUpdate("delete from Customer where Username = :username")

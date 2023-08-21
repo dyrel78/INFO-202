@@ -4,6 +4,7 @@
     Author     : dyrellumiwes
 --%>
 
+<%@page import="dao.DaoFactory"%>
 <%@page import="domain.Product"%>
 <%@page import="java.util.Collection"%>
 <%@page import="dao.ProductDAO"%>
@@ -40,7 +41,8 @@
 
 
                     <%
-                        ProductDAO dao = new ProductCollectionsDAO();
+                        //ProductDAO dao = new ProductCollectionsDAO();
+                ProductDAO dao = DaoFactory.getProductDAO();
 
                         // get the major from the query parameter
                         String selectedCategory = request.getParameter("category");

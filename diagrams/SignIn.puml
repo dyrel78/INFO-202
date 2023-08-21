@@ -1,0 +1,52 @@
+@startuml
+
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 11
+      Style plain
+    }
+  }
+  Database {
+    BorderColor #A80036
+  }
+}
+
+' === Actors / Participants
+
+actor "User" as user
+participant "Home Page" as homePage << JSP Page >>
+participant "SignInServlet" as signInServlet <<Servlet>>
+participant "Sign In Page" as signInPage << JSP Page >>
+participant "Session" as session
+participant "CustomerJdbiDAO" as dao << DAO >>
+database "Database" as db
+
+' === Interactions ===
+
+
+user -> homePage++ : Clicks "Sign In" button
+homePage -> signInServlet++ : Redirect to sign in page
+signInServlet -> signInPage++ : Render sign in page
+signInPage -> user : Display sign in form
+user -> signInPage : Enters credentials
+signInPage -> signInServlet : Submits credentials
+signInServlet -> dao : Fetch customer by username
+alt Customer found
+  dao -> db : Fetch customer data
+  dao -> signInServlet : Return customer data
+  signInServlet -> session : Store customer in session
+  signInServlet -> homePage : Redirect to home page
+else Customer not found
+  dao -> signInServlet : Return null
+  signInServlet -> signInPage : Display error message
+  signInPage -> user : Display error message
+end
+
+@enduml

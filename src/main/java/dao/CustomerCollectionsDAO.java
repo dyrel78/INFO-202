@@ -45,11 +45,10 @@ public class CustomerCollectionsDAO implements CustomerDAO {
     @Override
     public Boolean verificationCheck(String username, String password) {
         Customer check = customers.get(username);
-        if (check.getPassword() == password) {
-            return true;
-        } else {
-            return true;
-        }
+         if(check == null) return false;
+        return check.getPassword().equals(password);
     }
 
+    
+  
 }

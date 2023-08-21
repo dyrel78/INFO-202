@@ -106,4 +106,9 @@ public class ProductViewerTest {
         //not needed?
     }
     
+    @Test
+    public void filterByCategory(){
+        
+    }
+    
 }

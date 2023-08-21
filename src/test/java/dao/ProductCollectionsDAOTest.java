@@ -34,7 +34,10 @@ public class ProductCollectionsDAOTest {
     @BeforeEach
     public void setUp() {
         
-        dao = new ProductCollectionsDAO();
+      // dao = new ProductCollectionsDAO();
+         dao = JdbiDaoFactory.getProductDAO();
+
+
         
         
 		product1 = new Product();
