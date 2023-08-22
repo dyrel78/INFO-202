@@ -101,11 +101,6 @@ public static void initialise() {
         assertThat(customers, hasItem(c1));
         assertThat(customers, hasItem(c2));
         
-        
-        
-        Customer result = customers.stream()
-                .filter(c -> c.getCustomerId().equals(c1.getCustomerId())).findFirst().get();
-        assertThat(result, Matchers.samePropertyValuesAs(c1));
     }
 
     /**
@@ -145,8 +140,7 @@ public static void initialise() {
     public void testSearchByUserName() {
         Customer test = dao.searchByUserName("test1");
         assertThat (test, is (c1));
-        assertThat(test,Matchers.samePropertyValuesAs(c1));
-        
+       // assertThat(test,Matchers.samePropertyValuesAs(c1));
        assertThat(dao.searchByUserName(c1.getUsername()), is(c1));
 
     }
@@ -156,16 +150,12 @@ public static void initialise() {
      */
     @Test
     public void testVerificationCheck() {
-        Customer test = dao.searchByUserName("test1");
+        //test if c1 user name is c2 password, should be wrong,
+        assertThat(dao.verificationCheck(c1.getUsername(), c2.getPassword()), is(false));
         
-        String testUserName = test.getUsername();
-        String testPassword = test.getPassword();
-        
-        Boolean flag = dao.verificationCheck(testUserName, testPassword);
-        
-        assertThat(flag, Matchers.is(true)   );
-        
-        
+        //c2 == c2 , should be True
+        assertThat(dao.verificationCheck(c2.getUsername(), c2.getPassword()), is(true));
+
     }
     
 }

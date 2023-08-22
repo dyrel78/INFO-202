@@ -11,6 +11,7 @@ import dao.JdbiDaoFactory;
 import domain.Customer;
 import java.io.IOException;
 import static java.lang.System.in;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Random;
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.exception.ConstraintsViolatedException;
 import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
+import org.jdbi.v3.core.statement.UnableToExecuteStatementException;
 
 /**
  *
@@ -55,15 +57,19 @@ public class CreateAccountServlet extends HttpServlet {
             String address = request.getParameter("address");
             String email = request.getParameter("email");
 
+            
+            
+            
             Customer customer = new Customer(password, userName, firstName, surname, address, email);
-
             // save the student
+            
+
             new Validator().assertValid(customer);
             session.removeAttribute("validation");
             dao.saveCustomer(customer);
-            session.removeAttribute("validation");
             response.sendRedirect("index.jsp");
-
+            
+            
         } catch (ConstraintsViolatedException ex) {
             // get the violated constraints from the exception
             ConstraintViolation[] violations = ex.getConstraintViolations();
@@ -77,8 +83,17 @@ public class CreateAccountServlet extends HttpServlet {
 
             request.getSession().setAttribute("validation", msg);
             response.sendRedirect("create-account.jsp");
-        }
+        } catch(UnableToExecuteStatementException ex){
+            
+              String msg = "Please fix the following input problems:";
+             msg += "<ul>";
+              msg += "Username already exists ";
+            msg += "</ul>";
+             request.getSession().setAttribute("validation", msg);
+            response.sendRedirect("create-account.jsp");
+    
+}       
 
     }
-
 }
+

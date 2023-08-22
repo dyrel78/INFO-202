@@ -47,7 +47,7 @@ public interface CustomerJdbiDAO extends CustomerDAO{
     @SqlUpdate("delete from Customer where Username = :username")
     public void removeCustomer(@BindBean Customer customer);
 
-  
+
    
     @Override
     @SqlQuery("select * from Customer")

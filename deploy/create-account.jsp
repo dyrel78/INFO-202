@@ -34,11 +34,11 @@
 <%
         String validation = (String)session.getAttribute("validation");
 	validation = validation != null ? validation : ""; 
-        // test
-       session.removeAttribute("validation");
+        // test 
+      // session.removeAttribute("validation");
 %>
 
-<p><%= validation %></p>
+<div class="error-messages"><%= validation%></div>	
 
 		<form action="create-account" method="POST">
 

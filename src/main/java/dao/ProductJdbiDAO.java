@@ -54,7 +54,7 @@ public interface ProductJdbiDAO extends ProductDAO{
     public Collection<Product> getProducts();
 
     @Override
-    @SqlQuery("select Category from Product")
+    @SqlQuery("select DISTINCT Category from Product")
     public Collection<String> getCategories();
 
     @Override
