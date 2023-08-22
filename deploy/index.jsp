@@ -28,6 +28,8 @@
 
             </nav>
             <h1>Welcome to Gadgets R Us!</h1>
+            
+            <img src="logo_1.jpeg" alt="Cool black screen I guess"/>
 
 
 

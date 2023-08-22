@@ -26,9 +26,9 @@ main {
 	margin: auto;
 }
 
-nav a:hover {
+/*nav a:hover {
     transform: scale(1.5);    
-}
+}*/
 
 /* page headings */
 h1 {
@@ -157,6 +157,14 @@ th, a.nav, legend, label {
 h1, button {
 	background-color: darkslategrey;
 	color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    background: white;
+    color: darkslategrey;
+    border: 1px solid darkslategrey;
+
 }
 
 td, th {

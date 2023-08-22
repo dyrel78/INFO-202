@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author dyrellumiwes
  */
-public class CustomerCollectionsDAOTest {
+public class CustomerDAOTest {
     
   private CustomerDAO dao;
      private Customer c1;
