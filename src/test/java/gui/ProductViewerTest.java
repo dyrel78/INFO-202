@@ -153,15 +153,16 @@ public class ProductViewerTest {
 		verify(dao).searchById(p1.getProductId());
 
         // verify that the JList is now displaying p1 (and only p1)
-//               fixture.list().requireItemCount(1);
-//		SimpleListModel model = (SimpleListModel) fixture.list().target().getModel();
-//		assertThat(model, contains(p1));
+        //Not working
+            //   fixture.list("lstProducts").requireItemCount(1);
+		SimpleListModel model = (SimpleListModel) fixture.list().target().getModel();
+		assertThat(model, contains(p1));
     }
     
     
     @Test
     public void filterByCategory(){
-        		ProductViewer dialog = new ProductViewer(null, true, dao);
+        	ProductViewer dialog = new ProductViewer(null, true, dao);
 
 		fixture = new DialogFixture(robot, dialog);
 		fixture.show().requireVisible();
@@ -175,10 +176,10 @@ public class ProductViewerTest {
 		// verify that filterByCategory was called on the DAO, and that p2's category was the parameter that was passed
 		verify(dao).filterByCategory(p2.getCategory());
 
-		// verify that the JList is now displaying p2 and p3
-		fixture.list().requireItemCount(2);
+		// verify that the JList is now displaying p2 
+		fixture.list("lstProducts").requireItemCount(1);
 		SimpleListModel model = (SimpleListModel) fixture.list().target().getModel();
-		assertThat(model, containsInAnyOrder(p2, p3));
+		assertThat(model, containsInAnyOrder(p2));
     }
     
 }

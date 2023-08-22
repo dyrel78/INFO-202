@@ -22,8 +22,9 @@ public interface ProductJdbiDAO extends ProductDAO{
     @Override
     @SqlQuery("select * from Product where ProductId = :productId")
     @RegisterBeanMapper(Product.class)
-    public Product searchById(String id);
+    public Product searchById(@Bind("id")String id);
 
+    
     @Override
     @SqlUpdate("insert into Product(ProductId, Name, Description, Category, ListPrice, QuantityInStock) values(:productId,:name,:description,:category,:listPrice,:quantityInStock)")
     public void saveProduct(@BindBean Product product);

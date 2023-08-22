@@ -16,10 +16,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 }
 
+.categoryButton{
+    margin: 50px;
+}
+
 /* centre the main content area */
 main {
 	max-width: 800px;
 	margin: auto;
+}
+
+nav a:hover {
+    transform: scale(1.5);    
 }
 
 /* page headings */

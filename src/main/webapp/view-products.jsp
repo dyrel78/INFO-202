@@ -40,6 +40,9 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>Price</th>
+                        <th>In Stock</th>
+
 <!--                        <th>In Stock</th>-->
                     </tr>
                 </thead>
@@ -73,8 +76,17 @@
                         <td><%= product.getProductId()%></td>
                         <td><%= product.getName()%></td>
                         <td><%= product.getCategory()%></td>
-                        <td> <form action="view-product" method="POST"><input type="hidden" name="id" value="<%= product.getProductId() %>"><button>Buy</button></form>
-</td>
+                        <td><%="$" + product.getListPrice()%></td>
+                        <td><%= product.getQuantityInStock()%></td>
+
+
+                        
+                        <td> 
+                        <form action="view-product" method="POST">
+                        <input type="hidden" name="id" value="<%= product.getProductId() %>">
+                        <button>Buy</button>
+                        </form>
+                        </td>
                       
                     </tr>
                     <%
@@ -82,7 +94,7 @@
                     %>
                 </tbody>
 
-                <a href="view-products.jsp?category=All"><button>All</button></a>
+                <a href="view-products.jsp?category=All"><button class="categoryButton">All</button></a>
 
                 <%
                     Collection<String> categories = dao.getCategories();
@@ -90,7 +102,7 @@
                     for (String category : categories) {
                 %>
 
-                <a href="view-products.jsp?category=<%= category%>"><button><%= category%></button></a>
+                <a href="view-products.jsp?category=<%= category%>"><button class="categoryButton"><%= category%></button></a>
 
                 <%
                     }

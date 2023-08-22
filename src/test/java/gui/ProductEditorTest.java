@@ -6,11 +6,13 @@ package gui;
 
 import dao.ProductDAO;
 import domain.Product;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.fixture.DialogFixture;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
@@ -101,8 +103,8 @@ public class ProductEditorTest {
 		assertThat("Ensure the Name was saved", savedProduct, hasProperty("name", equalTo("Tyler")));
                 assertThat("Ensure the Description was saved", savedProduct, hasProperty("description", equalTo("Version 2")));
                 assertThat("Ensure the Category was saved", savedProduct, hasProperty("category", equalTo("DVD")));
-                assertThat("Ensure the Price was saved", savedProduct, hasProperty("listPrice", equalTo("50.00")));
-    		assertThat("Ensure the Quantity In Stock was saved", savedProduct, hasProperty("quantityInStock", equalTo("2")));
+		assertThat("Ensure the price was saved", savedProduct.getListPrice(), is(new BigDecimal("50.00")));
+		assertThat("Ensure the Quantity in stock was saved", savedProduct.getQuantityInStock(), is(new BigDecimal("2")));
 		
 
     
