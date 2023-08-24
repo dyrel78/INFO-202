@@ -19,48 +19,48 @@
         -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- comment -->
-        
+
         <title>Create Account</title>
     </head>
-  <body>
+    <body>
         <main>
-<%@include file="WEB-INF/jspf/navigation.jspf"%>
+            <%@include file="WEB-INF/jspf/navigation.jspf"%>
 
-	<h1>Create Account</h1>
+            <h1>Create Account</h1>
 
-	<fieldset>
+            <fieldset>
 
-		<legend>Account Details</legend>
-<%
-        String validation = (String)session.getAttribute("validation");
-	validation = validation != null ? validation : ""; 
-        // test 
-      // session.removeAttribute("validation");
-%>
+                <%    String validation = (String) session.getAttribute("validation");
+                    validation = validation != null ? validation : "";
+                    // test 
+                    session.removeAttribute("validation");
+                %>
 
-<div class="error-messages"><%= validation%></div>	
 
-		<form action="create-account" method="POST">
+                <form action="create-account" method="POST">
+                    <legend>Account Details</legend>
 
-			<label>Username:</label><input type="text" name="username" required/>
-                        <label>Password:</label><input type="text" name="password" required/>
+                    <div class="error-messages"><%= validation%></div>	
 
-			<label>First Name:</label><input type="text" name="firstname" required/>
-                        <label>Surname</label><input type="text" name="surname" require />
-			<label>Address:</label><textarea name="address"></textarea>
-			<label>Phone Number:</label><input name="phoneNumber" required/>
-			<label>Email Address:</label><input name="email" required/>
+                    <label>Username:</label><input type="text" name="username" required/>
+                    <label>Password:</label><input type="text" name="password" required/>
 
-			<button type="submit">Create Account</button>
-                            <button type="reset">Clear</button>
+                    <label>First Name:</label><input type="text" name="firstname" required/>
+                    <label>Surname</label><input type="text" name="surname" require />
+                    <label>Address:</label><textarea name="address"></textarea>
+                    <label>Phone Number:</label><input name="phoneNumber" required/>
+                    <label>Email Address:</label><input name="email" required/>
 
-		</form>
+                    <button type="submit">Create Account</button>
+                    <button type="reset">Clear</button>
 
-	</fieldset>
+                </form>
 
-	<a class="nav" href="index.jsp">Back to Home</a>
+            </fieldset>
 
-</main>
-        
+            <a class="nav" href="index.jsp">Back to Home</a>
+
+        </main>
+
     </body>
 </html>

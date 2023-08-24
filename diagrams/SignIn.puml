@@ -21,7 +21,7 @@ skinparam {
 ' === Actors / Participants
 
 actor "User" as user
-participant "Home Page" as homePage << JSP Page >>
+participant "index" as homePage << JSP Page >>
 participant "SignInServlet" as signInServlet <<Servlet>>
 participant "Sign In Page" as signInPage << JSP Page >>
 participant "Session" as session
@@ -34,19 +34,22 @@ database "Database" as db
 user -> homePage++ : Clicks "Sign In" button
 homePage -> signInServlet++ : Redirect to sign in page
 signInServlet -> signInPage++ : Render sign in page
-signInPage -> user : Display sign in form
-user -> signInPage : Enters credentials
-signInPage -> signInServlet : Submits credentials
-signInServlet -> dao : Fetch customer by username
+return  Display sign in form
+user -> signInPage++ : Enters details
+signInPage --> signInServlet : POST details
+signInServlet -> dao++ : searchByUserName(username)
+
 alt Customer found
-  dao -> db : Fetch customer data
-  dao -> signInServlet : Return customer data
+  dao -> db++ : select * from customer where username = :username
+return Return customer data
+ return Return customer data
   signInServlet -> session : Store customer in session
-  signInServlet -> homePage : Redirect to home page
-else Customer not found
+  signInServlet --> homePage : Redirect to updated home page
+
+else Customer not found or password incorrect
   dao -> signInServlet : Return null
   signInServlet -> signInPage : Display error message
-  signInPage -> user : Display error message
+  signInPage --> user : Display error message
 end
 
 @enduml

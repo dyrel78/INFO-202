@@ -1,0 +1,87 @@
+@startuml
+
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 11
+      Style plain
+    }
+  }
+  Database {
+    BorderColor #A80036
+  }
+}
+
+
+' === Actors / Participants
+
+actor "User" as user
+participant "View Products\nPage" as viewPage << JSP Page >>
+participant "Session" as session
+participant "CustomerJdbiDAO" as dao << DAO >>
+database "Database" as db
+
+user --> viewPage: Clicks "View Products"
+viewPage -> session++: redirect
+session -> dao--: Get all products
+dao -> db++: SELECT * FROM products
+db --> dao++: results
+dao ->db: SELECT DISTINCT * FROM categories
+db --> dao: results
+
+alt Default
+dao --> viewPage: Display Result of \ndao.getProducts();
+
+else Category Selected
+dao->db :SELECT * FROM products WHERE category = selectedCategory
+db --> viewPage: Display Result of \ndao.filterByCategory(selectedCategory)
+db--
+
+end
+
+
+
+
+
+  
+
+'       <%
+'                         //ProductDAO dao = new ProductCollectionsDAO();
+'                 ProductDAO dao = DaoFactory.getProductDAO();
+
+'                         // get the major from the query parameter
+'                         String selectedCategory = request.getParameter("category");
+
+' // declare the students collection
+'                         Collection<Product> products;
+
+' // if there is no major parameter, or "All" is requested, return all students
+'                         if (selectedCategory == null || selectedCategory.equals("All")) {
+'                             products = dao.getProducts();
+'                         } else {
+'                             // otherwise, get the students for the requested major
+'                             products = dao.filterByCategory(selectedCategory);
+'                         }
+                        
+
+'                         for (Product product : products) {
+'                     %>
+
+' PLUS VIEW CATEGORIES
+
+
+
+
+' === Interactions ===
+
+
+
+
+
+@enduml
