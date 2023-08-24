@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <link rel="stylesheet" href="css/style.css"/>
-          <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" href="css/style.css"/>
+        <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> -->
 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Zilla+Slab&display=swap" rel="stylesheet">
 
@@ -22,39 +22,42 @@
 
         <title>JSP Page</title>
     </head>
-      <body>
+    <body>
         <main>
-<%@include file="WEB-INF/jspf/navigation.jspf"%>
+            <%@include file="WEB-INF/jspf/navigation.jspf"%>
 
-	<h1>Sign In Account</h1>
-        
-        <div> <p> Please sign in to continue </p> </div>
+            <h1>Sign In Account</h1>
 
-	<fieldset>
+            <div> <p> Please sign in to continue </p> </div>
 
-		<legend>Account Details</legend>
-<%
-	String validation = (String)session.getAttribute("validation");
-	validation = validation != null ? validation : "";
-%>
+            <fieldset>
 
-<div class="error-messages"><%= validation%></div>	
-<form action="sign-in" method="POST">
+                <%    String validation = (String) session.getAttribute("validation");
+                    validation = validation != null ? validation : "";
+                    session.removeAttribute("validation");
 
-			<label>Username:</label><input type="text" name="username"/>
-			<label>Password:</label><input type="text" name="password"/>
-                        
+                %>
 
-			<button type="submit">Sign in Account</button>
-                        
-		</form>
+                <form action="sign-in" method="POST">
 
-	</fieldset>
+                    <legend>Account Details</legend>
+                    <div class="error-messages"><%= validation%></div>	
 
-                <p class = "createText"> If you do not have an account please <a class="nav" href="create-account.jsp"> create one here.</a></p>
-	
 
-</main>
-        
+                    <label>Username:</label><input type="text" name="username"/>
+                    <label>Password:</label><input type="text" name="password"/>
+
+
+                    <button type="submit">Sign in Account</button>
+
+                </form>
+
+            </fieldset>
+
+            <p class = "createText"> If you do not have an account please <a class="nav" href="create-account.jsp"> create one here.</a></p>
+
+
+        </main>
+
     </body>
 </html>

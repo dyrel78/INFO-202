@@ -22,50 +22,30 @@ skinparam {
 ' === Actors / Participants
 
 actor "User" as user
-participant "Home Page" as homePage << JSP Page >>
-participant "CreateAccountServlet" as createServlet <<Servlet>>
-participant "create-account-details" as createPage << JSP Page >>
+participant "View Products\nPage" as viewPage << JSP Page >>
 participant "Session" as session
 participant "CustomerJdbiDAO" as dao << DAO >>
 database "Database" as db
+
+user --> viewPage: Clicks "View Products"
+viewPage -> session: Get session
+session -> dao: Get all products
+dao -> db: SELECT * FROM products
+db --> dao: ResultSet
+dao --> session: List<Product>
+session --> viewPage: List<Product>
+viewPage --> user: Display products
+
+  
+
+
+
 
 
 ' === Interactions ===
 
 
-user -> homePage++ : clicks "Create Account" button
-homePage -> createServlet--++ : Redirect to create account
-createServlet -> createPage--++ : Render create account page
-createPage -> user-- : Display create account form
-user -> createPage : Enters account details
-createPage -> createServlet : Submits account details
-createServlet -> dao : Insert new customer data
 
-alt Customer already exists
-  dao -> db : Insert fails
-  dao -> createPage : Display error message
-  createPage -> user : Display error message
-else Customer created successfully
-    dao -> db : Insert succeeds
-    dao -> createPage : Display success message
-    createPage -> user : Display success message
-    end
 
-homePage -> createPage++: redirect
-
-createServlet -> dao++ : postById(id)
-dao -> db++ : insert into Customer(values)
-
-return result
-return Customer
-
-createServlet -> session++ : setAttribute("customer", customer)
-createServlet -> createPage++ : redirect
-createPage -> session++ : getAttribute("customer")
-return student
-
-createPage -> createPage : add student\ndetails to form
-
-createPage -->user : student details ready to update
 
 @enduml

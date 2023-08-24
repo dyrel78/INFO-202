@@ -16,8 +16,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 }
 
+.error-messages{
+    top:30px;
+}
+
+
 .categoryButton{
-    margin: 50px;
+    align-items: center;
 }
 
 /* centre the main content area */
@@ -34,6 +39,10 @@ main {
 h1 {
 	text-align: center;
 	padding: 10px;
+        
+    -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .7);
+-moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
 }
 
 nav a {
@@ -54,62 +63,6 @@ nav {
 
 }
 
-/*nav {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    padding: 1rem;
-    
-}
-
-nav ul {
-    grid-column: 2;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-}
-
-nav ul li {
-    text-decoration: none;
-    list-style: none;
-   
-}
-
-nav ul li a {
-    color: var(--primary);
-}
-
-nav p {
-    
-}
-nav {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    padding: 1rem;
-    
-}
-
-nav ul {
-    grid-column: 2;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-}
-
-nav ul li {
-    text-decoration: none;
-    list-style: none;
-   
-}
-
-nav ul li a {
-    color: var(--primary);
-}
-
-nav p {
-    
-}*/
-
-
 
 /* tables */
 table {
@@ -117,6 +70,21 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 	border-spacing: 0px 0px;
+}
+
+fieldset{
+      background-color: lightgray;
+      
+          -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .7);
+-moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+
+}
+
+legend{
+     background-color: lightgray;
+     border-top-color: thin darkslategrey;
+
 }
 
 td, th {
@@ -158,12 +126,15 @@ h1, button {
 	background-color: darkslategrey;
 	color: white;
 }
+button{
+    height :25px;
+}
 
 button:hover {
     cursor: pointer;
     background: white;
     color: darkslategrey;
-    border: 1px solid darkslategrey;
+    border: solid darkslategrey;
 
 }
 

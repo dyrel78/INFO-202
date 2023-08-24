@@ -22,34 +22,66 @@ skinparam {
 ' === Actors / Participants
 
 actor "User" as user
-participant "view-students" as viewPage << JSP Page >>
-participant "ViewStudentServlet" as viewServlet <<Servlet>>
-participant "view-student-details" as editPage << JSP Page >>
+participant "Home Page" as homePage << JSP Page >>
+participant "CreateAccountServlet" as createServlet <<Servlet>>
+participant "create-account-details" as createPage << JSP Page >>
 participant "Session" as session
-participant "StudentJdbiDAO" as dao << DAO >>
+participant "CustomerJdbiDAO" as dao << DAO >>
 database "Database" as db
 
 
 ' === Interactions ===
 
-user -> viewPage++ : clicks "Update" button
 
-viewPage -> viewServlet++ : POST student ID
+user -> homePage++ : clicks "Create Account" button
+homePage -> createPage--++ : Redirect to create account
+' createServlet -> createPage++ : Render create account page
+createPage --> user-- : Display create account form
+user -> createPage++ : Enters account details
+createPage --> createServlet--++ : Submits account details
 
-viewServlet -> dao++ : getByID(id)
-dao -> db++ : select * from student\nwhere id = :id
-return result
-return student
 
-viewServlet -> session++ : setAttribute("student", student)
-return
 
-viewServlet -> editPage++ : redirect
-editPage -> session++ : getAttribute("student")
-return student
+alt Customer already exists
+  createServlet -> dao++ : doPost
 
-editPage -> editPage : add student\ndetails to form
+     dao --> db--++ : dao.save(customer)
+  db --> createPage-- : Exception caught/ User already exists
+else Customer created successfully
+    createServlet -> dao++ : doPost 
+    dao --> db : dao.save(customer)
+ 
 
-editPage -->user : student details ready to update
+  db -->  dao : result
+  dao --> createServlet : Insert succeeds
+    end
+
+  dao--
+  createServlet -> session++ : setAttribute("customer", customer)
+   
+  session -> homePage++ : Customemised home page
+
+
+
+    
+
+' createPage -> session++ : setAttribute("customer", customer)
+
+
+' createServlet -> dao++ : postById(id)
+' dao -> db++ : insert into Customer(values)
+
+' return result
+' return Customer
+
+' createServlet -> session++ : setAttribute("customer", customer)
+' createServlet -> createPage++ : redirect
+
+' createPage -> session++ : getAttribute("customer")
+' return student
+
+' createPage -> createPage : add student\ndetails to form
+
+' createPage -->user : student details ready to update
 
 @enduml
